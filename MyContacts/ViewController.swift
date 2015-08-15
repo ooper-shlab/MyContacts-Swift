@@ -96,7 +96,6 @@ class ViewController: UITableViewController, CNContactPickerDelegate, CNContactV
         // Make the Display Picker and Create New Contact rows look like buttons
         if indexPath.section < 2 {
             aCell = tableView.dequeueReusableCellWithIdentifier(DefaultCellIdentifier)
-            //dequeueReusableCellWithIdentifier(DefaultCellIdentifier) as! UITableViewCell?
             if aCell == nil {
                 aCell = UITableViewCell(style: .Default, reuseIdentifier: DefaultCellIdentifier)
             }
@@ -177,6 +176,7 @@ class ViewController: UITableViewController, CNContactPickerDelegate, CNContactV
             cvc.delegate = self
             // Allow users to edit the person’s information
             cvc.allowsEditing = true
+            //cvc.contactStore = self.store //seems to work without setting this.
             self.navigationController?.pushViewController(cvc, animated: true)
         } else {
             // Show an alert if "Appleseed" is not in Contacts
@@ -193,6 +193,7 @@ class ViewController: UITableViewController, CNContactPickerDelegate, CNContactV
     private func showNewContactViewController() {
         let npvc = CNContactViewController(forNewContact: nil)
         npvc.delegate = self
+        //npvc.contactStore = self.store //seems to work without setting this.
         
         let navigation = UINavigationController(rootViewController: npvc)
         self.presentViewController(navigation, animated: true, completion: nil)
@@ -212,6 +213,7 @@ class ViewController: UITableViewController, CNContactPickerDelegate, CNContactV
         ucvc.alternateName = "John Appleseed"
         ucvc.title = "John Appleseed"
         ucvc.message = "Company, Inc"
+        ucvc.contactStore = self.store //needed for editing/adding contacts?
         
         self.navigationController?.pushViewController(ucvc, animated: true)
     }
