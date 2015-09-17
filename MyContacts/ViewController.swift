@@ -218,6 +218,26 @@ class ViewController: UITableViewController, CNContactPickerDelegate, CNContactV
         self.navigationController?.pushViewController(ucvc, animated: true)
     }
     
+    //MARK: CNContactPickerDelegate methods
+    // The selected person and property from the people picker.
+    func contactPicker(picker: CNContactPickerViewController, didSelectContactProperty contactProperty: CNContactProperty) {
+        let contact = contactProperty.contact
+        let contactName = CNContactFormatter.stringFromContact(contact, style: .FullName)
+        let propertyName = CNContact.localizedStringForKey(contactProperty.key)
+        let message = "Picked \(propertyName) for \(contactName)"
+        
+        let alert = UIAlertController(title: "Picker Result",
+            message: message,
+            preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        picker.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // Implement this if you want to do additional work when the picker is cancelled by the user.
+    func contactPickerDidCancel(picker: CNContactPickerViewController) {
+        picker.dismissViewControllerAnimated(true, completion: {})
+    }
+    
     
     //MARK: CNContactViewControllerDelegate methods
     // Dismisses the new-person view controller.
