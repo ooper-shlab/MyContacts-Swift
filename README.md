@@ -12,11 +12,12 @@ Created by OOPer in cooperation with shlab.jp, on 2015/6/28.
 ===========================================================================
 BUILD REQUIREMENTS:
 
-Xcode 7 GM seed, iOS SDK 9
+Xcode 8.2.1, iOS SDK 10
 
 ===========================================================================
 RUNTIME REQUIREMENTS:
 
-iOS 9
+iOS 10
 
+(Some parts of this code may not work well with iOS 9. See issue #1.)
 ===========================================================================
